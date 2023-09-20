@@ -1,0 +1,29 @@
+
+
+<section class="products pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 my-4"  *ngFor="let item of products" >
+                <div class="card shadow " style="width: 18rem;">
+                    <img src={{item.img}} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Shirt </h5>
+                        <div class="div d-flex justify-content-between">
+                            <p class="card-text " style="color: red;" *ngIf="(item.quantity ==0 ) ">{{item.quantity}} Item</p>
+                            <p class="card-text" style="color: orange;" *ngIf="(item.quantity ==1 ) ">{{item.quantity}} Item</p>
+                            <p class="card-text" style="color: green;" *ngIf="(item.quantity > 1 ) ">{{item.quantity}} Items</p>
+                            <p class="card-text">{{item.price}} $</p>
+                            <p  *ngIf="(item.status == 'SoldOut')" style="color: red; text-decoration: line-through;" >{{item.status}}</p>
+                            <p  *ngIf="(item.status == 'Only 1 left in stock')" style="color: orange; text-decoration:underline;" >{{item.status}}</p>
+                            <p  *ngIf="(item.status == 'In the stock')" style="color: green; text-decoration:underline;" >{{item.status}}</p>
+                        </div>
+                        
+                        <button *ngIf="(item.quantity ==0 )" class="btn btn-danger" disabled > Buy Now</button>
+                        <button *ngIf="(item.quantity ==1 )" class="btn btn-warning" (click)="countQuantity(item.id)"> Buy Now</button>
+                        <button *ngIf="(item.quantity >1 )" class="btn btn-success" (click)="countQuantity(item.id)"> Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
